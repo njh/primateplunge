@@ -1,7 +1,16 @@
 /*
-    Chasm main.c
-    Sets up main SDL/video mode stuff and calls load/enter game functions
-*/
+ *  main.c
+ *  Primate Plunge
+ *
+ *  Created by Joseph Humfrey on Fri Jul 18 2003.
+ *  Copyright (c) 2003 aelius productions. All rights reserved.
+ *
+ *  Licenced under uDevGame LICENSE Version 4b1
+ *  See included COPYING file for details
+ *
+ *  Sets up main SDL/video mode stuff and calls load/enter game functions
+ *
+ */
    
 #include <stdio.h>
 #include <stdlib.h>
