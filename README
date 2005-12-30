@@ -1,0 +1,105 @@
+PRIMATE PLUNGE README
+http://www.aelius.com/primateplunge/
+
+
+
+
+1. INSTRUCTIONS There is an instructions page within Primate Plunge
+which can be accessed from the main menu - for quick information on how
+to play the game, please see that. However, for more comprehensive
+details, see below.
+
+Primate Plunge is played with 4 keys - Left, Right, Down, and Special.
+Several keys are assigned to each of these actions, including but not
+limited to:
+
+Left: Left Arrow Key, Numpad 4 Right: Right Arrow Key, Numpad 6 Down:
+Down Arrow Key, Numpad 2 Powerup: Up Arrow Key, Space Bar, Numpad 0
+
+The aim of the game is to help a certain primate by the name of Monkey
+travel as far down the level as possible. He mustn't drop off the bottom
+of the screen (move too fast) or hit the ceiling (move too slowly). If
+he falls off the bottom, he will instantly fall to his death. If he hits
+the ceiling, he will be hurt. There are many other obstacles (types of
+platform) within the different worlds which Monkey can either avoid or
+use to his advantage. Experiment!
+
+There are 4 different powerups in Primate Plunge: the heart, the
+parachute, the jumping bean, and the jetpack. The heart restores
+Monkey's health to full, and in fact makes him invulnerable to damage
+for about 1 second. The parachute limits his terminal velocity, allowing
+him to float slowly down or across to harder to reach areas. The jumping
+bean allows Monkey to jump up and down on any platform as if it were a
+trampoline (very useful on hot rock!) Finally, the jetpack allows Monkey
+to fly, using controlled rocket bursts.
+
+2. SCORES AND STAR RATINGS For each world there is a pass mark in order
+to progress to the next one, or in the case of the last world, to
+complete the game. This required score is shown on the world selection
+screen, and turns into a high score once you have completed it.
+
+There are also ratings from one to five stars after you have completed
+the world. There are five more score marks as you progress through the
+level which allow you to get a rating for that world. As you pass the
+score marks, the appropriate number of stars will be shown at the top of
+the screen. Your rating for each world is shown at the bottom of the
+world selection screen.
+
+You are also awarded a medal every time you manage to complete the whole
+game on a new star rating.
+
+3. FAQ Q: Primate Plunge looks tiny on my high res display! I can't see
+what I'm doing! A: Yes, a lot of people have found this, but I'm afraid
+that there wasn't really any easy solution for this - I simply didn't
+have the time to implement a way of enlarging the window. As a quick
+fix, you can go into "Universal Access" in the System Preferences and
+turn on zoom.
+
+Q: Primate Plunge won't even launch! A: There have been problems
+relating to this. Some people have found that the game works after a
+couple of attempts, and for others it doesn't launch at all, either way
+without leaving any useful information on the console (debugging log).
+Please note that this is not a MacOS X 10.3 (Panther) problem as it has
+been tested on several machines running Panther which work correctly
+(although might be a combination of G5+Panther?). However, if you do
+have this problem, please email me (phish@aelius.com) and state what
+hardware/operating system/any 3rd party software you can think of you
+are running Primate Plunge with. Thank you!
+
+Q: Sometimes when I try to land on a platform, Monkey just goes straight
+through! A: Monkey will only attempt to grab onto a platform which you
+have not already passed - do not go below any platform you intend to
+grab onto. Be particularly careful of this on the last level, as the
+jetpack makes moving upwards much easier.
+
+4. CREDITS AND THANKS, AND A LITTLE ABOUT THE MAKING The original
+concept for Primate Plunge came from a game called NS-Shaft, which is
+for MacOS Classic, and can be found at
+http://www.nagi-p.com/eng/nsshaft.html
+
+I wanted to expand slightly upon the NS-Shaft concept, and wanted to
+make the game MacOS X native. My other main goal was to make a small
+desktop game which DIDN'T run fullscreen. Although fullscreen games are
+great, I miss being able to play a little bit of a game, pause it, do
+some work, unpause it, and carry on playing! Sometimes I feel like I
+want to have a quick bit of fun in a game, not spend too long on it, and
+not devote the whole of my Mac's screen to playing it.
+
+Primate Plunge began development and design just before uDevGame began.
+About half way through the project I decided that rather than try and
+fruitlessly generate some kind of revenue from selling the game as
+shareware, I would enter it into the uDevGame 2003 competition.
+
+The game is written purely in C, using the SDL library for graphics and
+the SDL_Mixer library added on for sound and music. This is in fact my
+first major completed project both in C and on the Macintosh, although I
+have finished another game called Triaction, which was made in a game
+programming language Blitz3D (www.blitzbasic.com) for Windows. But of
+course I'd rather develop for the Mac any day :-)
+
+Primate Plunge was created by: Joseph Humfrey (all design, programming,
+graphics) phish@aelius.com http://www.aelius.com/ Jens Nilsson (sound,
+game music) public@fadeoutstudio.com http://www.fadeoutstudio.com/
+Shigeki Miyashita (title music - thanks to iDevGame's resources section)
+http://www6.shizuokanet.ne.jp/~miya/
+
