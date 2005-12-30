@@ -1,0 +1,166 @@
+WORLD jungleJ
+Selection Frame = jungleJitters/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceJungle.wav
+
+BackgroundLayer 2 = jungleJitters/background.bmp, speed = 2
+BackgroundLayer 3 = jungleJitters/backTrees.bmp, speed = 3
+BackgroundLayer 4 = jungleJitters/vines.bmp, speed = 4
+BackgroundLayer 5 = jungleJitters/sideTrunks.bmp, speed = 5
+
+
+Platform type 1 animation = branch.bmp, frames = 1, frameperiod = 500, surface offset = 2, width = 60, frequency = 7
+Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surface offset = 2, width = 60, frequency = 2
+Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surface offset = 4, width = 60, frequency = 3
+
+Powerup type 10 frequency = 0.04
+
+
+Score to complete = 10
+Star Distances = 12, 16, 20, 25, 30
+Start platform type = 1
+Scrolling speed = 20
+Gravity = 0.26
+
+
+
+WORLD crumble
+Selection Frame = crumbleCanyon/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceWind.wav
+
+BackgroundLayer 0 = crumbleCanyon/largeBackground.bmp, speed = 0
+BackgroundLayer 4 = crumbleCanyon/medRocks.bmp, speed = 4
+BackgroundLayer 5 = crumbleCanyon/nearRocks.bmp, speed = 5
+
+Platform type 1 animation = moltenMayhem/normal.bmp, frames = 2, frameperiod = 100, surface offset = 0, width = 60, frequency = 4
+Platform type 30 animation = moltenMayhem/rockFallApart.bmp, frames = 5, frameperiod = 100, surface offset = 0, width = 60, sound = BreakingRock.wav, frequency = 4
+Platform type 100 animation = spikeRock.bmp, frames = 1, frameperiod = 100, surface offset = 7, width = 70, sound = LandingOnSpikes.wav, frequency = 2
+
+Powerup type 30 frequency = 0.03
+
+Score to complete = 15
+Star Distances = 20, 30, 40, 50, 60
+Start platform type = 1
+Scrolling speed = 18
+Gravity = 0.40
+
+
+
+
+
+
+
+WORLD frenzie
+Selection Frame = frenziedFalls/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceWaterFall.wav
+
+BackgroundLayer 0 = frenziedFalls/background.bmp, speed = 0
+BackgroundLayer 4 = frenziedFalls/cliff.bmp, speed = 5
+BackgroundLayer 5 = frenziedFalls/waterBack.bmp, speed = 8
+BackgroundLayer 6 = frenziedFalls/waterFront.bmp, speed = 9
+
+Platform type 1 animation = branch.bmp, frames = 1, frameperiod = 500, surface offset = 2, width = 60, frequency = 6
+Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surface offset = 2, width = 60, frequency = 1
+Platform type 30 animation = log.bmp, frames = 1, frameperiod = 500, surface offset = 2, width = 60, sound = BreakingTree.wav, frequency = 4
+Platform type 111 animation = piranha.bmp, frames = 4, frameperiod = 80, surface offset = 0, width = 40, sound = Piranha.wav, frequency = 4
+
+Score to complete = 12
+Star Distances = 15, 17, 20, 25, 30
+Start platform type = 1
+Scrolling speed = 22
+Gravity = 0.24
+
+
+
+
+
+
+WORLD moltenM
+Selection Frame = moltenMayhem/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceVolcano.wav
+
+BackgroundLayer 0 = moltenMayhem/background.bmp, speed = 0
+BackgroundLayer 2 = moltenMayhem/distant.bmp, speed = 2
+BackgroundLayer 4 = moltenMayhem/middleRocks.bmp, speed = 4
+BackgroundLayer 5 = moltenMayhem/sides.bmp, speed = 5
+
+Platform type 1 animation = moltenMayhem/normal.bmp, frames = 2, frameperiod = 100, surface offset = 0, width = 60, frequency = 4
+Platform type 30 animation = moltenMayhem/rockFallApart.bmp, frames = 5, frameperiod = 100, surface offset = 0, width = 60, sound = BreakingRock.wav, frequency = 2
+Platform type 110 animation = moltenMayhem/hotRocks.bmp, frames = 1, frameperiod = 40, surface offset = 0, width = 60, sound = BurningMonkeyHands.wav, frequency = 8
+Platform type 111 animation = moltenMayhem/veryHotPlatform.bmp, frames = 2, frameperiod = 80, surface offset = 0, width = 60, sound = BurningMonkeyHandsEvenMore.wav, frequency = 3
+
+Powerup type 50 frequency = 0.1
+
+Score to complete = 16
+Star Distances = 20, 22, 25, 30, 35
+Start platform type = 1
+Scrolling speed = 26
+Gravity = 0.38
+
+
+
+
+
+WORLD skyScra
+Selection Frame = skyScrapes/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceRain.wav
+
+BackgroundLayer 0 = skyScrapes/background.bmp, speed = 0
+BackgroundLayer 2 = skyScrapes/pipesBack.bmp, speed = 2
+BackgroundLayer 3 = skyScrapes/pipesMid.bmp, speed = 3
+BackgroundLayer 5 = skyScrapes/pipesFore.bmp, speed = 5
+BackgroundLayer 7 = skyScrapes/rain.bmp, speed = 9
+
+Platform type 1 animation = pipe.bmp, frames = 1, frameperiod = 500, surface offset = 1, width = 60, sound = LandMetal.wav, frequency = 1
+Platform type 60 animation = conveyorright.bmp, frames = 2, frameperiod = 80, surface offset = 1, width = 60, sound = LandMetal.wav, frequency = 1
+Platform type 61 animation = conveyorleft.bmp, frames = 2, frameperiod = 80, surface offset = 1, width = 60, sound = LandMetal.wav, frequency = 1
+Platform type 70 animation = antiGrav.bmp, frames = 2, frameperiod = 80, surface offset = 0, width = 60, frequency = 1
+Platform type 100 animation = rustSpikes.bmp, frames = 1, frameperiod = 100, surface offset = 6, width = 60, sound = LandingOnSpikes.wav, frequency = 3
+Platform type 111 animation = laser.bmp, frames = 4, frameperiod = 80, surface offset = 7, width = 60, frequency = 2
+
+Powerup type 40 frequency = 0.2
+
+Score to complete = 20
+Star Distances = 22, 24, 26, 30, 35
+Start platform type = 1
+Scrolling speed = 26
+Gravity = 0.25
+
+
+
+WORLD priPlun
+Selection Frame = primatesPlunge/frame.bmp
+
+Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+
+Ambient sound = AmbienceUnderwater.wav
+
+BackgroundLayer 0 = primatesPlunge/background.bmp, speed = 0
+BackgroundLayer 5 = primatesPlunge/siderocks.bmp, speed = 5
+
+Platform type 1 animation = moltenMayhem/normal.bmp, frames = 2, frameperiod = 100, surface offset = 0, width = 60, frequency = 4
+Platform type 70 animation = antiGrav.bmp, frames = 2, frameperiod = 80, surface offset = 0, width = 60, frequency = 1
+Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surface offset = 2, width = 60, frequency = 2
+Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surface offset = 4, width = 60, frequency = 3
+
+Powerup type 60 frequency = 0.2
+
+Score to complete = 200
+Star Distances = 22, 24, 26, 30, 35
+Start platform type = 1
+Scrolling speed = 20
+Gravity = 0.1
