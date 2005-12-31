@@ -1251,8 +1251,8 @@ void selectPrevWorld(void)
 /* Code which is used several times in the function beneath */
 int selectOption()
 {
-    int returnAction;
-    int i;
+    int returnAction=0;
+    int i=0;
     
     /* Choose what to do with the selected option */
     switch(currentMenu)
@@ -1990,7 +1990,7 @@ void updatePlayer( void )
 /* Updates the timer etc on powerups / collision with player */
 void updatePowerups( void )
 {
-    int timeLimit;
+    int timeLimit=0;
     
     /* Pickups */
     if(powerupPickup != NO_POWERUP)
@@ -2510,10 +2510,10 @@ void drawCeilingObstruction(void)
 void drawGameNumber( int displayNumber, int x, int y, int alignment )
 {
     char numberString[9];
-    int startDigit;
-    int numberLength;
-    int numberSpacing;
-    int i;
+    int startDigit=0;
+    int numberLength=0;
+    int numberSpacing=0;
+    int i=0;
     
     /* Convert integer to a string of digits */
     sprintf(numberString, "%8.8d", displayNumber);
@@ -2544,9 +2544,9 @@ void drawGameNumber( int displayNumber, int x, int y, int alignment )
 void drawGameInterface(void)
 {
     int healthBarOffsetY=55;
-    animation* anim;
-    float progress;
-    int drawX, drawY;
+    animation* anim=NULL;
+    float progress=0.0f;
+    int drawX=0, drawY=0;
     
     /*
         Paused Image
@@ -2709,8 +2709,8 @@ void drawGameInterface(void)
 /* Fill screen with platforms, and make the center one the start platform */
 void randomiseAllPlatforms(void)
 {
-    int i;
-    worldPlatformRef* startPlatform;
+    worldPlatformRef* startPlatform=NULL;
+    int i=0;
 
     for(i=0;i<9;i++)
     {
