@@ -24,6 +24,8 @@ Start platform type = 1
 Scrolling speed = 20
 Gravity = 0.26
 
+ENDWORLD
+
 
 
 WORLD crumble
@@ -48,6 +50,8 @@ Star Distances = 200, 300, 400, 500, 600
 Start platform type = 1
 Scrolling speed = 18
 Gravity = 0.40
+
+ENDWORLD
 
 
 
@@ -78,6 +82,8 @@ Start platform type = 1
 Scrolling speed = 22
 Gravity = 0.24
 
+ENDWORLD
+
 
 
 
@@ -107,6 +113,8 @@ Star Distances = 200, 220, 250, 300, 350
 Start platform type = 1
 Scrolling speed = 26
 Gravity = 0.38
+
+ENDWORLD
 
 
 
@@ -140,6 +148,8 @@ Start platform type = 1
 Scrolling speed = 26
 Gravity = 0.25
 
+ENDWORLD
+
 
 
 WORLD priPlun
@@ -159,8 +169,11 @@ Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surf
 
 Powerup type 60 frequency = 0.2
 
-Score to complete = 200
+Score to complete = 400
 Star Distances = 220, 240, 260, 300, 350
 Start platform type = 1
 Scrolling speed = 20
 Gravity = 0.1
+
+ENDWORLD
+

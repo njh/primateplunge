@@ -15,6 +15,17 @@
 #include <SDL_mixer.h>
 
 
+
+/* The platform directly below the monkey when the game starts */
+#define START_PLATFORM	(5)
+
+/* Maximum length of a string/filepath */
+#define	MAX_STRING_LEN	(1024)
+
+/* Maximum number of worlds that can be loaded */
+#define MAX_NUM_WORLDS	(32)
+
+
 /* All the different type of platform behaviours which can occur in different worlds */
 typedef enum _platformType {
     NORMAL=1,
@@ -154,8 +165,11 @@ void loadAnimation(char*, int, animation*);
 /* Open the preferences file */
 FILE* openPrefsScores( const char* mode );
 
-/* Saves prefs and scores into a file in ~/Library/Preferences/com.aelius.primateprefsscores */
+/* Saves prefs and scores into a file */
 void savePrefsScores( void );
+
+/* Reads in preference and scores */
+void readPrefsScores( void );
 
 /* Calculate how many stars player has for this world */
 /* If the number of stars has increased, then return the new star rating */

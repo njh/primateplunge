@@ -27,6 +27,8 @@ print outputFile "\n\nvoid loadWorlds()\n{\n";
 print outputFile "int nextPlatformRef;\n";
 print outputFile "int nextPowerup;\n";
 print outputFile "int i;\n\n";
+print outputFile "numWorlds=0;\n";
+print outputFile "for(i=0; i<MAX_NUM_WORLDS; i++) { worlds[i]=NULL; }\n\n";
 
 # go through each line of the file, looking at each one
 while ( <inputFile> )
@@ -46,7 +48,7 @@ while ( <inputFile> )
         print " * New world '$worldName' being created.\n";
 
 		# Write out the C code
-		print outputFile "\n/*\n    NEW WORLD: '$worldName'\n*/\n";
+		print outputFile "/*\n    NEW WORLD: '$worldName'\n*/\n";
 		print outputFile "currentWorld = (world*) calloc(1,sizeof(world));\n\n";
 		print outputFile "currentWorld->order = numWorlds;\n\n";
 		print outputFile "/* Set all the backgrounds, platform refs, powerups to NULL/0 */\n";
@@ -65,6 +67,18 @@ while ( <inputFile> )
         
         next;
     }
+    
+    if ( /^ENDWORLD$/ )
+    {
+		print outputFile "/* Store this newly created world in the worlds array */\n";
+		print outputFile "worlds[numWorlds] = currentWorld;\n\n";
+
+		print outputFile "/* Increase variable holding running total number of worlds in game */\n";
+		print outputFile "numWorlds++;\n\n\n";
+        
+        next;
+    }
+    
     
     # Frame backgrond when selecting in world selection screen
     if ( /^Selection\sFrame\s?=\s?(.+)\.bmp(\s+)?$/ )
@@ -343,14 +357,7 @@ while ( <inputFile> )
         
 		print outputFile "/* Gravity */\n";
 		print outputFile "currentWorld->gravity = $gravity;\n\n";
-		
-		print outputFile "/* Store this newly created world in the worlds array */\n";
-		print outputFile "worlds[numWorlds] = currentWorld;\n\n";
-
-		print outputFile "/* Increase variable holding running total number of worlds in game */\n";
-		print outputFile "numWorlds++;\n";
-		
-        
+       
         next;
     }
     
@@ -358,6 +365,7 @@ while ( <inputFile> )
         
 }
 
+print outputFile "\ncurrentWorld=NULL;\n";
 print outputFile "}\n\n";
 
 print "Finished processing.\n";

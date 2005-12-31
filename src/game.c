@@ -24,13 +24,6 @@
 
 
 
-#define START_PLATFORM 5
-
-/* Maximum length of a string/filepath */
-#define	MAX_STRING_LEN	(1024)
-
-
-
 /* TEMP - testing with slow processor */
 int slowProcessor=0;
 
@@ -53,11 +46,11 @@ int lastFrameTime=0;
 int worldCompleteTime=0;
 
 /* All worlds */
-world* worlds[32];
+world* worlds[MAX_NUM_WORLDS];
 int numWorlds=0;	// Number tallied up as worlds are loaded
 world* currentWorld;
 
-platform platforms[9];
+platform platforms[10];
 int lastCorrodeTime=0;	// for corroding platforms
 int warned=0;	// ticking clock before powerup runs out
 int diedTime=0;	// so that moving level distance knows where to draw when you die
@@ -228,10 +221,6 @@ int readInt(FILE* filePointer, int* n)
 /* Main load function loads all game data */
 void loadGame( void )
 {
-    char formatString[7];
-    FILE* prefsScoresFile;
-    char hash;
-    int i;
     
     /*
         Show loading screen
@@ -372,14 +361,77 @@ void loadGame( void )
         Load the worlds
     */
     loadWorlds();
-    currentWorld=NULL;
+    
     
     /*
         Prefs/Scores file
     */
     
 	/* Open the preferences/scores file */
-	prefsScoresFile = openPrefsScores( "r" );
+	readPrefsScores();
+
+    
+    /* Seed the random number generator */
+    srand(SDL_GetTicks());
+}
+
+
+/* Calculate how many stars player has for this world */
+/* If the number of stars has increased, then return the new star rating */
+int calculateWorldStars( int worldNumber )
+{
+    int i;
+    int oldStars;
+    
+    oldStars = worlds[worldNumber]->numStars;
+    worlds[worldNumber]->numStars=0;
+    
+    for(i=0; i<5; i++)
+    {
+        if( worlds[worldNumber]->highScore >= worlds[worldNumber]->starScore[i] )
+            worlds[worldNumber]->numStars=i+1;
+        else break;
+    }
+    
+    if(worlds[worldNumber]->numStars > oldStars)
+        return worlds[worldNumber]->numStars;
+    else return 0;
+}
+
+
+/* Open the preferences file */
+FILE* openPrefsScores( const char* mode )
+{
+	FILE* file = NULL;
+	char* prefsPath = PREFSFILE;
+	char* fullPath = calloc( 1, MAX_STRING_LEN );
+	
+	// Windows: ./prefs.dat
+	// UNIX: ~/.primateplunge
+	// Mac: ~/Library/Preferences/com.aelius.primateprefsscores
+	
+	if (prefsPath[0] == '~' && prefsPath[1] == '/') {
+		// Prepend the path to the home directory
+		snprintf( fullPath, MAX_STRING_LEN, "%s/%s", getenv("HOME"), &prefsPath[2] );
+	} else {
+		strncpy( fullPath, prefsPath, MAX_STRING_LEN );
+	}
+	
+	//printf( "Opening preferences from: %s\n", fullPath );
+	
+	file = fopen( fullPath, mode );
+	free( fullPath );
+	
+	return file;
+}
+
+
+/* Reads in preference and scores */
+void readPrefsScores( void )
+{
+	FILE* prefsScoresFile = openPrefsScores( "r" );
+	char formatString[7];
+	int i,hash;
     
 
     /* if one doesn't exist, create it. */
@@ -441,58 +493,6 @@ void loadGame( void )
             savePrefsScores();
         } // format code correct?
     } // prefs file exists?
-    
-    /* Seed the random number generator */
-    srand(SDL_GetTicks());
-}
-
-/* Calculate how many stars player has for this world */
-/* If the number of stars has increased, then return the new star rating */
-int calculateWorldStars( int worldNumber )
-{
-    int i;
-    int oldStars;
-    
-    oldStars = worlds[worldNumber]->numStars;
-    worlds[worldNumber]->numStars=0;
-    
-    for(i=0; i<5; i++)
-    {
-        if( worlds[worldNumber]->highScore >= worlds[worldNumber]->starScore[i] )
-            worlds[worldNumber]->numStars=i+1;
-        else break;
-    }
-    
-    if(worlds[worldNumber]->numStars > oldStars)
-        return worlds[worldNumber]->numStars;
-    else return 0;
-}
-
-
-/* Open the preferences file */
-FILE* openPrefsScores( const char* mode )
-{
-	FILE* file = NULL;
-	char* prefsPath = PREFSFILE;
-	char* fullPath = calloc( 1, MAX_STRING_LEN );
-	
-	// Windows: ./prefs.dat
-	// UNIX: ~/.primateplunge
-	// Mac: ~/Library/Preferences/com.aelius.primateprefsscores
-	
-	if (prefsPath[0] == '~' && prefsPath[1] == '/') {
-		// Prepend the path to the home directory
-		snprintf( fullPath, MAX_STRING_LEN, "%s/%s", getenv("HOME"), &prefsPath[2] );
-	} else {
-		strncpy( fullPath, prefsPath, MAX_STRING_LEN );
-	}
-	
-	//printf( "Opening preferences from: %s\n", fullPath );
-	
-	file = fopen( fullPath, mode );
-	free( fullPath );
-	
-	return file;
 }
 
 
