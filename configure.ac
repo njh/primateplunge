@@ -5,7 +5,7 @@ AC_PREREQ(2.57)
 
 dnl ############# Initialization
 
-AC_INIT([primateplungle], [1.1], [primateplunge@aelius.com])
+AC_INIT([primateplungle], [1.0.5], [primateplunge@aelius.com])
 
 AC_CONFIG_SRCDIR( src/game.c )
 AC_CANONICAL_SYSTEM
