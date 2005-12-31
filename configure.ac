@@ -54,5 +54,5 @@ dnl ############## Final Output
 CFLAGS="$CFLAGS -g -Wall"
 
 
-AC_OUTPUT([Makefile src/Makefile worlds/Makefile])
+AC_OUTPUT([Makefile src/Makefile])
 
