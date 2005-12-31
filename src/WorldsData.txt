@@ -18,8 +18,8 @@ Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surf
 Powerup type 10 frequency = 0.04
 
 
-Score to complete = 10
-Star Distances = 12, 16, 20, 25, 30
+Score to complete = 100
+Star Distances = 120, 160, 200, 250, 300
 Start platform type = 1
 Scrolling speed = 20
 Gravity = 0.26
@@ -43,8 +43,8 @@ Platform type 100 animation = spikeRock.bmp, frames = 1, frameperiod = 100, surf
 
 Powerup type 30 frequency = 0.03
 
-Score to complete = 15
-Star Distances = 20, 30, 40, 50, 60
+Score to complete = 150
+Star Distances = 200, 300, 400, 500, 600
 Start platform type = 1
 Scrolling speed = 18
 Gravity = 0.40
@@ -72,8 +72,8 @@ Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surfa
 Platform type 30 animation = log.bmp, frames = 1, frameperiod = 500, surface offset = 2, width = 60, sound = BreakingTree.wav, frequency = 4
 Platform type 111 animation = piranha.bmp, frames = 4, frameperiod = 80, surface offset = 0, width = 40, sound = Piranha.wav, frequency = 4
 
-Score to complete = 12
-Star Distances = 15, 17, 20, 25, 30
+Score to complete = 120
+Star Distances = 150, 170, 200, 250, 300
 Start platform type = 1
 Scrolling speed = 22
 Gravity = 0.24
@@ -102,8 +102,8 @@ Platform type 111 animation = moltenMayhem/veryHotPlatform.bmp, frames = 2, fram
 
 Powerup type 50 frequency = 0.1
 
-Score to complete = 16
-Star Distances = 20, 22, 25, 30, 35
+Score to complete = 160
+Star Distances = 200, 220, 250, 300, 350
 Start platform type = 1
 Scrolling speed = 26
 Gravity = 0.38
@@ -134,8 +134,8 @@ Platform type 111 animation = laser.bmp, frames = 4, frameperiod = 80, surface o
 
 Powerup type 40 frequency = 0.2
 
-Score to complete = 20
-Star Distances = 22, 24, 26, 30, 35
+Score to complete = 200
+Star Distances = 220, 240, 260, 300, 350
 Start platform type = 1
 Scrolling speed = 26
 Gravity = 0.25
@@ -160,7 +160,7 @@ Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surf
 Powerup type 60 frequency = 0.2
 
 Score to complete = 200
-Star Distances = 22, 24, 26, 30, 35
+Star Distances = 220, 240, 260, 300, 350
 Start platform type = 1
 Scrolling speed = 20
 Gravity = 0.1

@@ -1,7 +1,8 @@
 
-AM_CFLAGS = -g -Wall @SDL_CFLAGS@
-AM_LDFLAGS = -lm @SDL_LIBS@
-
 bin_PROGRAMS = primateplunge
-primateplunge_SOURCES = main.c game.c game.h
+primateplunge_SOURCES = main.c game.c game.h worlds.c
 
+worlds.c: WorldsData.txt
+	perl buildworlds.pl
+
+	

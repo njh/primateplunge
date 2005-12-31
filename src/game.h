@@ -110,6 +110,17 @@ typedef struct _soundSet {
     Mix_Chunk** soundArray;
 } soundSet;
 
+
+
+
+/* Globals in game.c */
+extern world* currentWorld;
+extern world* worlds[32];
+extern int numWorlds;
+extern world* currentWorld;
+
+
+
 /* Main load function loads all game data */
 void loadGame( void );
 
@@ -239,4 +250,8 @@ int randomTrueFalse(float);
 
 /* Uses mouseX and mouseY to determine whether mouse is in a given rect. returns 1 for true, 0 for false */
 int mouseInRect(int, int, int, int);
+
+
+/* In worlds.c */
+void loadWorlds(void);
 
