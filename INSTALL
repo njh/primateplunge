@@ -1,0 +1,15 @@
+
+Instructions:
+
+	./configure
+	make
+	
+	make install
+
+
+Requirements:
+
+	libsdl
+	SDL_Mixer
+	Timidity
+	
