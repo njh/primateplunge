@@ -17,21 +17,22 @@
 #include <string.h>
 #include <math.h>
 
-#include "SDL.h"
-#include "SDL_mixer.h"
+#include <SDL.h>
+#include <SDL_mixer.h>
+
 #include "game.h"
+#include "config.h"
 
 /* Global surface which specifies the screen to draw on to */
 SDL_Surface *mainScreen;
 
-/* Taskbar icon */
-SDL_Surface* taskBarIcon;
 
 int main(int argc, char *argv[])
 {
 	Uint32 initflags = SDL_INIT_VIDEO || SDL_INIT_AUDIO;
 	Uint8  video_bpp = 16;
 	Uint32 videoflags = SDL_HWSURFACE;
+	SDL_Surface* taskBarIcon;
 	
 	/* Initialise the SDL library */
 	if ( SDL_Init(initflags) < 0 ) {

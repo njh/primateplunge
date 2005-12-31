@@ -14,14 +14,21 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <errno.h>
+
+#include <SDL.h>
+#include <SDL_mixer.h>
 
 #include "game.h"
+#include "config.h"
+
+
 
 #define START_PLATFORM 5
-#define sound Mix_Chunk
-#define debugLevelProperties 1
 
-extern SDL_Surface *mainScreen;
+/* Maximum length of a string/filepath */
+#define	MAX_STRING_LEN	(1024)
+
 
 
 /* TEMP - testing with slow processor */
@@ -86,23 +93,23 @@ int playerHealth=10;
 
 /* Music */
 Mix_Music* titleMusic;
-sound* gameMusic;
+Mix_Chunk* gameMusic;
 int musicLoopChannel=-1;
 
 /* Sounds */
-sound* death;
-sound* jetpack;
-sound* parachuteSnd;
-sound* timeUp;
-sound* congrats;
-sound* congratsEnding;
-sound* getStarRating;
-sound* interface;
-sound* powerupBeanSnd;
-sound* powerupHealthSnd;
-sound* powerupParachuteSnd;
-sound* powerupJetpackSnd;
-sound* starRating;
+Mix_Chunk* death;
+Mix_Chunk* jetpack;
+Mix_Chunk* parachuteSnd;
+Mix_Chunk* timeUp;
+Mix_Chunk* congrats;
+Mix_Chunk* congratsEnding;
+Mix_Chunk* getStarRating;
+Mix_Chunk* interface;
+Mix_Chunk* powerupBeanSnd;
+Mix_Chunk* powerupHealthSnd;
+Mix_Chunk* powerupParachuteSnd;
+Mix_Chunk* powerupJetpackSnd;
+Mix_Chunk* starRating;
 soundSet ah;
 soundSet boing;
 soundSet ouch;
@@ -223,7 +230,6 @@ void loadGame( void )
 {
     char formatString[7];
     FILE* prefsScoresFile;
-    char* filePath;
     char hash;
     int i;
     
@@ -273,10 +279,8 @@ void loadGame( void )
     /*
         Music
     */
-    titleMusic=Mix_LoadMUS("music/HappySong2.mid");
-        if(!titleMusic)
-            printf("Mix_LoadMUS(\"music/HappySong2.mid\"): %s\n", Mix_GetError());
-    gameMusic = loadSound("../music/gameMusic.wav");
+    titleMusic=loadMusic("titleMusic.mid");
+    gameMusic=loadSound("gameMusic.wav");
     /* reduce volume of this music because it's too obtrusive
         to be played full volume */
     Mix_VolumeChunk(gameMusic, 100);  
@@ -373,16 +377,11 @@ void loadGame( void )
     /*
         Prefs/Scores file
     */
-    /* Build path */
-    filePath = (char*) malloc(strlen("prefs.dat")+1);
-    filePath = "prefs.dat";
     
-    /* Open file */
-    prefsScoresFile = fopen(filePath, "r");
+	/* Open the preferences/scores file */
+	prefsScoresFile = openPrefsScores( "r" );
     
-    /* Get rid of malloced space used for filePath */
-    free(filePath);
-    
+
     /* if one doesn't exist, create it. */
     if(prefsScoresFile==NULL)
         savePrefsScores(); 
@@ -469,29 +468,50 @@ int calculateWorldStars( int worldNumber )
     else return 0;
 }
 
-/* Saves prefs and scores into a file in ~/Library/Preferences/com.aelius.primateprefsscores */
+
+/* Open the preferences file */
+FILE* openPrefsScores( const char* mode )
+{
+	FILE* file = NULL;
+	char* prefsPath = PREFSFILE;
+	char* fullPath = malloc( MAX_STRING_LEN );
+	
+	// Windows: ./prefs.dat
+	// UNIX: ~/.primateplunge
+	// Mac: ~/Library/Preferences/com.aelius.primateprefsscores
+	
+	if (prefsPath[0] == '~' && prefsPath[1] == '/') {
+		// Prepend the path to the home directory
+		snprintf( fullPath, MAX_STRING_LEN, "%s/%s", getenv("HOME"), &prefsPath[2] );
+	} else {
+		strncpy( fullPath, prefsPath, MAX_STRING_LEN );
+	}
+	
+	//printf( "Opening preferences from: %s\n", fullPath );
+	
+	file = fopen( fullPath, mode );
+	free( fullPath );
+	
+	return file;
+}
+
+
+/* Saves prefs and scores */
 void savePrefsScores( void )
 {
     FILE* prefsScoresFile;
     char formatString[7] = "#chaps";
     char hash = '#';
     int i;
-    char* filePath = (char*) malloc(strlen("prefs.dat")+1);
-    
-    /* Build path */
-    sprintf(filePath, "%s", "prefs.dat");
-    
-    /* Overwrite any file which already exists there */
-    prefsScoresFile = fopen(filePath, "w");
+
+	/* Open the preferences/scores file */
+	prefsScoresFile = openPrefsScores( "w" );
     if(prefsScoresFile==NULL)
     {
         perror("Cound not write to prefs/scores file"); 
         return;
     }
     
-    /* Get rid of malloced space used for filePath */
-    free(filePath);
-        
     /* Write fileformat string */
     fwrite(&formatString[0], 1, 6, prefsScoresFile);
     
@@ -516,13 +536,13 @@ void savePrefsScores( void )
     fclose(prefsScoresFile);
 }
 
-/* Initialises a sound set including the array which holds the sound*s */
+/* Initialises a sound set including the array which holds the Mix_Chunk*s */
 void CreateSoundSet(soundSet* set, int size)
 {
     int i;
     
     set->size = size;
-    set->soundArray = (sound**) malloc(sizeof(sound*)*size);
+    set->soundArray = (Mix_Chunk**) malloc(sizeof(Mix_Chunk*)*size);
     
     /* Make sure array is initialised to NULL */
     for(i=0;i<size;i++) set->soundArray[i]=NULL;
@@ -542,32 +562,99 @@ void AddSoundToSet(char* filepath, soundSet* set)
         }
 }
 
+/* Check to see if a file exists */
+int fileExists( char* filepath )
+{
+	FILE* test=NULL;
+
+	test = fopen( filepath, "r" );
+	if (test==NULL) {
+		if (errno!=ENOENT) perror("failed to open file");
+		return 0;
+	}
+	
+	// Close the successfully opened file
+	fclose(test);
+	
+	// File exists
+	return 1;
+}
+
+/* Locates game resource file by testing paths */
+char* locateFile( char* filename, char* subdir )
+{
+	char* fullPath = malloc( MAX_STRING_LEN );
+	
+	if (filename==NULL) return NULL;
+	if (subdir==NULL) subdir=".";
+	
+	// Check in current directory
+	snprintf( fullPath, MAX_STRING_LEN, "./%s/%s", subdir, filename );
+	if (fileExists( fullPath )) return fullPath;
+	
+	// Check in directory below
+	snprintf( fullPath, MAX_STRING_LEN, "../%s/%s", subdir, filename );
+	if (fileExists( fullPath )) return fullPath;
+
+	// Check in Mac OS X style Resources directory
+	snprintf( fullPath, MAX_STRING_LEN, "../Resources/%s/%s", subdir, filename );
+	if (fileExists( fullPath )) return fullPath;
+	
+	// Check in configured directory
+	snprintf( fullPath, MAX_STRING_LEN, "%s/%s/%s", GAMEDATADIR, subdir, filename );
+	if (fileExists( fullPath )) return fullPath;
+	
+	
+	// Failed to find the resource file
+	fprintf(stderr, "Failed to locate resource file: %s/%s\n", subdir, filename );
+	free( fullPath );
+	exit(-1);
+	
+	return NULL;
+}
+
 
 /* Loads a sound effect and returns the Mix_Chunk pointer */
-sound* loadSound(char* filepath)
+Mix_Chunk* loadSound(char* filepath)
 {
-    sound* sound;
-    
-    if (filepath==NULL) return NULL;
-    
-    char fullPath[256]="sounds/";
-    
-    /* prepend "sounds/" to path */
-    strcat(fullPath, filepath);
+    Mix_Chunk* sound;
+    char* fullPath = locateFile( filepath, "sounds" );
+    if (fullPath==NULL) return NULL;
     
     /* Load sound */
     sound = Mix_LoadWAV(fullPath);
     if(!sound) {
         fprintf(stderr, "Mix_LoadWAV: Failed to load sound file: %s\n", Mix_GetError());
     }
+    
+    free( fullPath );
 
     return sound;
 }
 
+/* Loads a music file and returns the Mix_Music pointer */
+Mix_Music* loadMusic(char* filepath)
+{
+    Mix_Music* music;
+    char* fullPath = locateFile( filepath, "sounds" );
+    if (fullPath==NULL) return NULL;
+    
+    /* Load music */
+    music=Mix_LoadMUS(fullPath);
+    if(!music) {
+        fprintf(stderr, "Mix_LoadMUS: Failed to load music file: %s\n", Mix_GetError());
+    }
+    
+    free( fullPath );
+
+    return music;
+}
+
+
 /* Loads an image with a background transparency of magenta and returns the SDL_Surface */
 SDL_Surface* loadGraphic(char* filepath)
 {
-    char fullPath[256]="graphics/";
+    char* fullPath = locateFile( filepath, "graphics" );
     
     /* Used by SDL */
     Uint32 transparentColour;
@@ -578,14 +665,11 @@ SDL_Surface* loadGraphic(char* filepath)
     /* Final surface */
     SDL_Surface* graphic;
     
-    /* prepend "graphics/" to path */
-    strcat(fullPath, filepath);
-    
     /* Load image */
     rawImage = SDL_LoadBMP(fullPath);
     if(rawImage==NULL) {
-        //fprintf(stderr, "Could not find image: %s\n", fullPath);
-        printf("Could not find image: %s\n", fullPath);
+        fprintf(stderr, "Failed to load image: %s\n", fullPath);
+		free(fullPath);
         return NULL;
     }
     
@@ -599,6 +683,8 @@ SDL_Surface* loadGraphic(char* filepath)
     /* Free temporary surface */
     SDL_FreeSurface(rawImage);
     
+    free( fullPath );
+    
     return graphic;
 }
 
@@ -606,7 +692,7 @@ SDL_Surface* loadGraphic(char* filepath)
     filepath must come from a 255 char string */
 void loadAnimation(char* filepath, int numFrames, animation* anim)
 {
-    char fullPath[256]="graphics/";
+    char* fullPath = locateFile( filepath, "graphics" );
     
     /* Used by SDL */
     Uint32 transparentColour;
@@ -614,14 +700,12 @@ void loadAnimation(char* filepath, int numFrames, animation* anim)
     /* raw bmp loaded onto a surface. */
     SDL_Surface* allFramesImage;
     
-    /* prepend "graphics/" to path */
-    strcat(fullPath, filepath);
-    
     /* Load image */
     allFramesImage = SDL_LoadBMP(fullPath);
     if(allFramesImage==NULL) {
-        free(anim);
-        fprintf(stderr, "Could not find anim image: %s\n", fullPath);
+        free(anim);    
+        fprintf(stderr, "Could not load anim image: %s\n", fullPath);
+		free(fullPath);
         return;
     }
     
@@ -2221,7 +2305,7 @@ void updatePlatforms( void )
 }
 
 /* Use SDL_Mixer to play a sound, playing just once on a free channel */
-void playSound(sound* sound)
+void playSound(Mix_Chunk* sound)
 {
     if(soundOnOff)
     {

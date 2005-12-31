@@ -51,9 +51,12 @@ AC_CHECK_LIB([mx], [powf])
 
 # Check for SDL
 AM_PATH_SDL( 1.2.0, , [AC_MSG_ERROR(Can't find libsdl)])
+CFLAGS="$CFLAGS $SDL_CFLAGS"
+LIBS="$LIBS $SDL_LIBS"
 
 # Check for SDL mixer
 AC_CHECK_LIB( SDL_mixer, Mix_OpenAudio, , [AC_MSG_ERROR(Can't find SDL_mixer)])
+LIBS="$LIBS -lSDL_mixer"
 
 
 dnl ############## Header Checks
@@ -63,8 +66,8 @@ AC_HEADER_STDC
 
 dnl ############## Final Output
 
-CFLAGS="$CFLAGS -g -Wall $SDL_CFLAGS"
-LIBS="$LIBS $SDL_LIBS -lSDL_mixer"
+CFLAGS="$CFLAGS -g -Wall"
+LIBS="$LIBS"
 
 
 AC_OUTPUT([Makefile src/Makefile])

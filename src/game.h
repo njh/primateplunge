@@ -10,8 +10,10 @@
  *
  */
 
-#include "SDL.h"
-#include "SDL_mixer.h"
+
+#include <SDL.h>
+#include <SDL_mixer.h>
+
 
 /* All the different type of platform behaviours which can occur in different worlds */
 typedef enum _platformType {
@@ -111,7 +113,8 @@ typedef struct _soundSet {
 } soundSet;
 
 
-
+/* Glabals in main.c */
+SDL_Surface *mainScreen;
 
 /* Globals in game.c */
 extern world* currentWorld;
@@ -124,8 +127,17 @@ extern world* currentWorld;
 /* Main load function loads all game data */
 void loadGame( void );
 
+/* Check to see if a file exists */
+int fileExists( char* filepath );
+
+/* Locates game resource file by testing paths */
+char* locateFile( char* filename, char* subdir );
+
 /* Loads a sound effect and returns the Mix_Chunk pointer */
 Mix_Chunk* loadSound(char*);
+
+/* Loads a music file and returns the Mix_Music pointer */
+Mix_Music* loadMusic(char* filepath);
 
 /* Initialises a sound set including the array which holds the Mix_Chunk*s */
 void CreateSoundSet(soundSet*, int);
@@ -138,6 +150,9 @@ SDL_Surface* loadGraphic(char*);
 
 /* Loads animation (for character) given a filepath and the number of frames */
 void loadAnimation(char*, int, animation*);
+
+/* Open the preferences file */
+FILE* openPrefsScores( const char* mode );
 
 /* Saves prefs and scores into a file in ~/Library/Preferences/com.aelius.primateprefsscores */
 void savePrefsScores( void );
