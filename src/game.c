@@ -474,7 +474,7 @@ FILE* openPrefsScores( const char* mode )
 {
 	FILE* file = NULL;
 	char* prefsPath = PREFSFILE;
-	char* fullPath = malloc( MAX_STRING_LEN );
+	char* fullPath = calloc( 1, MAX_STRING_LEN );
 	
 	// Windows: ./prefs.dat
 	// UNIX: ~/.primateplunge
@@ -542,7 +542,7 @@ void CreateSoundSet(soundSet* set, int size)
     int i;
     
     set->size = size;
-    set->soundArray = (Mix_Chunk**) malloc(sizeof(Mix_Chunk*)*size);
+    set->soundArray = (Mix_Chunk**) calloc(size, sizeof(Mix_Chunk*));
     
     /* Make sure array is initialised to NULL */
     for(i=0;i<size;i++) set->soundArray[i]=NULL;
@@ -583,7 +583,7 @@ int fileExists( char* filepath )
 /* Locates game resource file by testing paths */
 char* locateFile( char* filename, char* subdir )
 {
-	char* fullPath = malloc( MAX_STRING_LEN );
+	char* fullPath = calloc(1, MAX_STRING_LEN );
 	
 	if (filename==NULL) return NULL;
 	if (subdir==NULL) subdir=".";
