@@ -47,7 +47,7 @@ while ( <inputFile> )
 
 		# Write out the C code
 		print outputFile "\n/*\n    NEW WORLD: '$worldName'\n*/\n";
-		print outputFile "currentWorld = (world*) malloc(sizeof(world));\n\n";
+		print outputFile "currentWorld = (world*) calloc(1,sizeof(world));\n\n";
 		print outputFile "currentWorld->order = numWorlds;\n\n";
 		print outputFile "/* Set all the backgrounds, platform refs, powerups to NULL/0 */\n";
         print outputFile "for(i=0; i<8; i++ ) currentWorld->backgrounds[i]=NULL;\n";
@@ -162,7 +162,7 @@ while ( <inputFile> )
         
         print outputFile "/* PLATFORM TYPE $platformType: */\n";
         print outputFile "/* Create new */\n";
-        print outputFile "currentWorld->platformRefs[nextPlatformRef] = (worldPlatformRef*) malloc(sizeof(worldPlatformRef));\n\n";
+        print outputFile "currentWorld->platformRefs[nextPlatformRef] = (worldPlatformRef*) calloc(1,sizeof(worldPlatformRef));\n\n";
 		print outputFile "/* Platform type */\n";
 		print outputFile "currentWorld->platformRefs[nextPlatformRef]->typeCode = (platformType) $platformType;\n\n";
 		print outputFile "/* Load animation */\n";
@@ -217,7 +217,7 @@ while ( <inputFile> )
 
         print outputFile "/* PLATFORM TYPE $platformType: */\n\n";
         print outputFile "/* Create new */\n";
-        print outputFile "currentWorld->platformRefs[nextPlatformRef] = (worldPlatformRef*) malloc(sizeof(worldPlatformRef));\n\n";
+        print outputFile "currentWorld->platformRefs[nextPlatformRef] = (worldPlatformRef*) calloc(1,sizeof(worldPlatformRef));\n\n";
 		print outputFile "/* Platform type */\n";
 		print outputFile "currentWorld->platformRefs[nextPlatformRef]->typeCode = (platformType) $platformType;\n\n";
 		print outputFile "/* Load animation */\n";

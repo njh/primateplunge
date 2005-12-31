@@ -24,7 +24,7 @@
 #include "config.h"
 
 /* Global surface which specifies the screen to draw on to */
-SDL_Surface *mainScreen;
+SDL_Surface *mainScreen=NULL;
 
 
 int main(int argc, char *argv[])

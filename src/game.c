@@ -46,11 +46,11 @@ int soundOnOff=1;
 int musicOnOff=1;
 
 /* Gameplay variables */
-int framePeriod;
-float levelDistance;
-float levelDY;
-int lastFrameTime;
-int worldCompleteTime;
+int framePeriod=0;
+float levelDistance=0.0f;
+float levelDY=0.0f;
+int lastFrameTime=0;
+int worldCompleteTime=0;
 
 /* All worlds */
 world* worlds[32];
@@ -60,7 +60,7 @@ world* currentWorld;
 platform platforms[9];
 int lastCorrodeTime=0;	// for corroding platforms
 int warned=0;	// ticking clock before powerup runs out
-int diedTime;	// so that moving level distance knows where to draw when you die
+int diedTime=0;	// so that moving level distance knows where to draw when you die
 int keyDownLeftArrow=0;
 int keyDownRightArrow=0;
 int keyDownDownArrow=0;
@@ -82,9 +82,9 @@ int powerupLastFrameTime=0;
 int powerupAnimFrame=0;
     
 /* Player position/fall speed */
-float playerX;
-float playerY;
-float playerDY;
+float playerX=0.0f;
+float playerY=0.0f;
+float playerDY=0.0f;
 int playerOn=1;				// Whether player is falling or standing
 int playerAbove=START_PLATFORM;		// Platform player is just above, whether standing or falling
 int playerAnimFrame=0;			// Frame number of current frame of animation
@@ -92,8 +92,8 @@ int playerLastFrameTime=0;		// Time player's animation was last updated
 int playerHealth=10;
 
 /* Music */
-Mix_Music* titleMusic;
-Mix_Chunk* gameMusic;
+Mix_Music* titleMusic=NULL;
+Mix_Chunk* gameMusic=NULL;
 int musicLoopChannel=-1;
 
 /* Sounds */
@@ -110,31 +110,31 @@ Mix_Chunk* powerupHealthSnd=NULL;
 Mix_Chunk* powerupParachuteSnd=NULL;
 Mix_Chunk* powerupJetpackSnd=NULL;
 Mix_Chunk* starRating=NULL;
-soundSet ah;
-soundSet boing;
-soundSet ouch;
-soundSet ouchSmall;
-soundSet land;
+soundSet ah = {0, NULL};
+soundSet boing = {0, NULL};
+soundSet ouch = {0, NULL};
+soundSet ouchSmall = {0, NULL};
+soundSet land = {0, NULL};
 int jetpackChannel=-1;	// sound loops, so we must know when to stop it
 int ambientSndChannel=-1;
 int parachuteOpen=0;	// so sound doesn't play more than once
 
 /* Character animations */
-animation walkRightAnim;
-animation walkLeftAnim;
-animation fallRightAnim;
-animation fallLeftAnim;
-animation fallAnim;
-animation monkeyJetAnim;
-animation standAnim;
-animation* playerAnimation;
+animation walkRightAnim = {0,0,0,  NULL};
+animation walkLeftAnim = {0,0,0,  NULL};
+animation fallRightAnim = {0,0,0,  NULL};
+animation fallLeftAnim = {0,0,0,  NULL};
+animation fallAnim = {0,0,0,  NULL};
+animation monkeyJetAnim = {0,0,0,  NULL};
+animation standAnim = {0,0,0,  NULL};
+animation* playerAnimation = NULL;
 
 /* Powerup animations */
-animation healAnim;
-animation paraBagAnim;
-animation jetpackAnim;
-animation jumpAnim;
-animation shieldAnim;
+animation healAnim = {0,0,0,  NULL};
+animation paraBagAnim = {0,0,0,  NULL};
+animation jetpackAnim = {0,0,0,  NULL};
+animation jumpAnim = {0,0,0,  NULL};
+animation shieldAnim = {0,0,0,  NULL};
 SDL_Surface* parachuteImg=NULL;
 
 /* Game interface items */
@@ -144,9 +144,9 @@ SDL_Surface* worldUnlocked=NULL;
 SDL_Surface* plunged=NULL;
 SDL_Surface* pausedImg=NULL;
 SDL_Surface* clockImg=NULL;
-animation numbersMapAnim;
-int nextStarTarget;
-int starCompleteTime;
+animation numbersMapAnim = {0,0,0,  NULL};
+int nextStarTarget=0;
+int starCompleteTime=0;
 
 /* Menu system items */
 SDL_Surface* logoImg=NULL;
@@ -195,8 +195,8 @@ SDL_Surface* needCompleteImg=NULL;
 SDL_Surface* starImg=NULL;
 SDL_Surface* medalImg=NULL;
 int mouseOverOption=1;
-int mouseX;
-int mouseY;
+int mouseX=0;
+int mouseY=0;
 
 SDL_Surface* voteMonkey=NULL;
 

@@ -2,7 +2,7 @@
 bin_PROGRAMS = primateplunge
 primateplunge_SOURCES = main.c game.c game.h worlds.c
 
-worlds.c: WorldsData.txt
+worlds.c: buildworlds.pl WorldsData.txt
 	perl buildworlds.pl
 
 CLEANFILES=worlds.c
