@@ -248,22 +248,22 @@ void loadGame( void )
     powerupJetpackSnd = loadSound("PowerUpJet.wav");
     starRating = loadSound("StarRating.wav");
     CreateSoundSet(&ah, 1);
-        AddSoundToSet("ah/MonkeyAh4.wav", &ah);
+        AddSoundToSet("MonkeyAh4.wav", &ah);
     CreateSoundSet(&boing, 3);
-        AddSoundToSet("boing/Boing1.wav", &boing);
-        AddSoundToSet("boing/Boing2.wav", &boing);
-        AddSoundToSet("boing/Boing3.wav", &boing);
+        AddSoundToSet("Boing1.wav", &boing);
+        AddSoundToSet("Boing2.wav", &boing);
+        AddSoundToSet("Boing3.wav", &boing);
     CreateSoundSet(&ouch, 3);
-        AddSoundToSet("bigHit/MonkeyBigHit1.wav", &ouch);
-        AddSoundToSet("bigHit/MonkeyBigHit2.wav", &ouch);
-        AddSoundToSet("bigHit/MonkeyBigHit3.wav", &ouch);
+        AddSoundToSet("MonkeyBigHit1.wav", &ouch);
+        AddSoundToSet("MonkeyBigHit2.wav", &ouch);
+        AddSoundToSet("MonkeyBigHit3.wav", &ouch);
     CreateSoundSet(&ouchSmall, 3);
-        AddSoundToSet("smallHit/MonkeySmallHit1.wav", &ouchSmall);
-        AddSoundToSet("smallHit/MonkeySmallHit2.wav", &ouchSmall);
-        AddSoundToSet("smallHit/MonkeySmallHit3.wav", &ouchSmall);
+        AddSoundToSet("MonkeySmallHit1.wav", &ouchSmall);
+        AddSoundToSet("MonkeySmallHit2.wav", &ouchSmall);
+        AddSoundToSet("MonkeySmallHit3.wav", &ouchSmall);
     CreateSoundSet(&land, 2);
-        AddSoundToSet("land/land1.wav", &land);
-        AddSoundToSet("land/land2.wav", &land);
+        AddSoundToSet("land1.wav", &land);
+        AddSoundToSet("land2.wav", &land);
     
     /*
         Music
