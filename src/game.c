@@ -431,8 +431,10 @@ void readPrefsScores( void )
 {
 	FILE* prefsScoresFile = openPrefsScores( "r" );
 	char formatString[7];
-	int i,hash;
+	int i;
     
+    /* Zero the format string */
+    memset( formatString, 0, 7 );
 
     /* if one doesn't exist, create it. */
     if(prefsScoresFile==NULL)
@@ -450,19 +452,25 @@ void readPrefsScores( void )
             for(i=0;i<numWorlds;i++)
             {
                 int numStars=0;
+                char hash;
                 
                 /* Check # starter */
                 fread(&hash, 1, 1, prefsScoresFile);
                 if(hash == '#')
                 {
+                	char worldName[8];
+                	memset( worldName, 0, 8 );
+                	
                     /* Read 7 char ID code */
-                    fread(&worlds[i]->name, 1, 7, prefsScoresFile);
+                    fread(worldName, 1, 7, prefsScoresFile);
+                    if (strncmp( worlds[i]->name, worldName, 7) != 0) {
+                    	fprintf(stderr, "Warning: levels in scores file don't match levels loaded.\n");
+                     }
                     
                     /* Read int high score */
-                    //readInt(prefsScoresFile, &worlds[i]->highScore);
                     fread(&worlds[i]->highScore, 4, 1, prefsScoresFile);
                 }
-                //else fprintf(stderr, "Invalid formatting in prefs/scores file\n");
+                else fprintf(stderr, "Invalid formatting in prefs/scores file\n");
                 
                 /* Calculate how many stars player has for this world */
                 calculateWorldStars(i);
@@ -480,7 +488,7 @@ void readPrefsScores( void )
             /* Read whether music is on or off */
             //readInt(prefsScoresFile, &musicOnOff);
             fread(&musicOnOff, 4, 1, prefsScoresFile);
-            
+           
             /* Close file */
             fclose(prefsScoresFile);
             
@@ -488,6 +496,8 @@ void readPrefsScores( void )
         /* Format was incorrect - create new file */
         else
         {
+        	fprintf(stderr, "Error: preferences file was in wrong format, creating now.\n");
+        
             /* Close file */
             fclose(prefsScoresFile);
             savePrefsScores();
@@ -513,7 +523,7 @@ void savePrefsScores( void )
     }
     
     /* Write fileformat string */
-    fwrite(&formatString[0], 1, 6, prefsScoresFile);
+    fwrite(formatString, 1, 6, prefsScoresFile);
     
     /* Write high scores for each world */
     for(i=0;i<numWorlds;i++)
@@ -522,7 +532,7 @@ void savePrefsScores( void )
         fwrite(&hash, 1, 1, prefsScoresFile);
         
         /* Write 7 char ID code */
-        fwrite(&worlds[i]->name, 1, 7, prefsScoresFile);
+        fwrite(worlds[i]->name, 1, 7, prefsScoresFile);
         
         /* Write int high score */
         fwrite(&worlds[i]->highScore, 4, 1, prefsScoresFile);
