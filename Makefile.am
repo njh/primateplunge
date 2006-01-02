@@ -1,5 +1,5 @@
 AUTOMAKE_OPTIONS = foreign
 
-SUBDIRS = src 
+SUBDIRS = src graphics sounds 
 
-EXTRA_DIST = music sounds graphics icons autogen.sh TIPS TODO
+EXTRA_DIST = autogen.sh TIPS TODO

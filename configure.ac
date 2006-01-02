@@ -5,7 +5,7 @@ AC_PREREQ(2.57)
 
 dnl ############# Initialization
 
-AC_INIT([primateplunge], [1.0.5], [primateplunge@aelius.com])
+AC_INIT([primateplunge], [1.1], [primateplunge@aelius.com])
 
 AC_CONFIG_SRCDIR( src/game.c )
 AC_CANONICAL_SYSTEM
@@ -70,5 +70,5 @@ CFLAGS="$CFLAGS -g -Wall"
 LIBS="$LIBS"
 
 
-AC_OUTPUT([Makefile src/Makefile])
+AC_OUTPUT([Makefile src/Makefile graphics/Makefile sounds/Makefile])
 

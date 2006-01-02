@@ -1,12 +1,15 @@
 
 soundsdir = $(pkgdatadir)/sounds
-sounds_DATA = \
+dist_sounds_DATA = \
 	AmbienceJungle.wav \
 	AmbienceRain.wav \
 	AmbienceUnderwater.wav \
 	AmbienceVolcano.wav \
 	AmbienceWaterFall.wav \
 	AmbienceWind.wav \
+	Boing1.wav \
+	Boing2.wav \
+	Boing3.wav \
 	BreakingRock.wav \
 	BreakingTree.wav \
 	BurningMonkeyHands.wav \
