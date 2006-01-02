@@ -32,7 +32,6 @@ dist_graphics_DATA = \
 	jetpackMonkey.bmp \
 	jetpackPickup.bmp \
 	jumpPickup.bmp \
-	jungleJitters \
 	laser.bmp \
 	loading.bmp \
 	locked.bmp \
