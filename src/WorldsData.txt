@@ -1,3 +1,8 @@
+#
+# Primate Plunge worlds data file
+# Processed by buildworlds.pl perl script to create worlds.c
+#
+
 WORLD jungleJ
 Selection Frame = jungleJitters/frame.bmp
 
@@ -151,29 +156,30 @@ Gravity = 0.25
 ENDWORLD
 
 
-
-WORLD priPlun
-Selection Frame = primatesPlunge/frame.bmp
-
-Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
-
-Ambient sound = AmbienceUnderwater.wav
-
-BackgroundLayer 0 = primatesPlunge/background.bmp, speed = 0
-BackgroundLayer 5 = primatesPlunge/siderocks.bmp, speed = 5
-
-Platform type 1 animation = moltenMayhem/normal.bmp, frames = 2, frameperiod = 100, surface offset = 0, width = 60, frequency = 4
-Platform type 70 animation = antiGrav.bmp, frames = 2, frameperiod = 80, surface offset = 0, width = 60, frequency = 1
-Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surface offset = 2, width = 60, frequency = 2
-Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surface offset = 4, width = 60, frequency = 3
-
-Powerup type 60 frequency = 0.2
-
-Score to complete = 400
-Star Distances = 220, 240, 260, 300, 350
-Start platform type = 1
-Scrolling speed = 20
-Gravity = 0.1
-
-ENDWORLD
+## Unfinished World
+#
+#WORLD priPlun
+#Selection Frame = primatesPlunge/frame.bmp
+#
+#Ceiling animation = ceilingSpikes.bmp, frames = 2, frameperiod = 50
+#
+#Ambient sound = AmbienceUnderwater.wav
+#
+#BackgroundLayer 0 = primatesPlunge/background.bmp, speed = 0
+#BackgroundLayer 5 = primatesPlunge/siderocks.bmp, speed = 5
+#
+#Platform type 1 animation = moltenMayhem/normal.bmp, frames = 2, frameperiod = 100, surface offset = 0, width = 60, frequency = 4
+#Platform type 70 animation = antiGrav.bmp, frames = 2, frameperiod = 80, surface offset = 0, width = 60, frequency = 1
+#Platform type 20 animation = springRope.bmp, frames = 4, frameperiod = 50, surface offset = 2, width = 60, frequency = 2
+#Platform type 100 animation = evilBranch.bmp, frames = 1, frameperiod = 40, surface offset = 4, width = 60, frequency = 3
+#
+#Powerup type 60 frequency = 0.2
+#
+#Score to complete = 400
+#Star Distances = 220, 240, 260, 300, 350
+#Start platform type = 1
+#Scrolling speed = 20
+#Gravity = 0.1
+#
+#ENDWORLD
 

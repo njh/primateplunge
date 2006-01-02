@@ -21,7 +21,9 @@ open(outputFile, ">$OUTPUT_FILE") or die "Could not create output file '$OUTPUT_
 
 print "Creating '$OUTPUT_FILE' from '$INPUT_FILE'.\n";
 
-print outputFile "\n#include <stdlib.h>\n";
+print outputFile "/* Generated ".localtime()." by buildworlds.pl from $INPUT_FILE */\n\n";
+print outputFile "#include <stdlib.h>\n";
+print outputFile "#include <string.h>\n";
 print outputFile "#include \"game.h\"\n\n";
 print outputFile "\n\nvoid loadWorlds()\n{\n";
 print outputFile "int nextPlatformRef;\n";
@@ -35,6 +37,12 @@ while ( <inputFile> )
 {
     # remove trailing line ending
     chomp;
+    
+    # Ignore comments
+    if ( /^\#/ )
+    {
+    	next;
+    }
     
     # New world indicator - e.g. "WORLD firstWld"
     if ( /^WORLD\s(\w+)(\s+)?$/ )
@@ -51,6 +59,7 @@ while ( <inputFile> )
 		print outputFile "/*\n    NEW WORLD: '$worldName'\n*/\n";
 		print outputFile "currentWorld = (world*) calloc(1,sizeof(world));\n\n";
 		print outputFile "currentWorld->order = numWorlds;\n\n";
+		print outputFile "strcpy(currentWorld->name, \"$worldName\");\n\n";
 		print outputFile "/* Set all the backgrounds, platform refs, powerups to NULL/0 */\n";
         print outputFile "for(i=0; i<8; i++ ) currentWorld->backgrounds[i]=NULL;\n";
         print outputFile "for(i=0; i<16; i++) currentWorld->platformRefs[i]=NULL;\n";
