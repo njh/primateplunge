@@ -333,7 +333,7 @@ void loadGame( void )
     starImg = loadGraphic("star.bmp");
     medalImg = loadGraphic("medal.bmp");
     
-    voteMonkey = loadGraphic("WindowsThankYou.bmp");
+    voteMonkey = loadGraphic("linuxThankYou.bmp");
     
     /*
         Character graphics
@@ -407,7 +407,7 @@ FILE* openPrefsScores( const char* mode )
 	char* fullPath = calloc( 1, MAX_STRING_LEN );
 	
 	// Windows: ./prefs.dat
-	// UNIX: ~/.primateplunge
+	// Linux: ~/.primateplunge
 	// Mac: ~/Library/Preferences/com.aelius.primateprefsscores
 	
 	if (prefsPath[0] == '~' && prefsPath[1] == '/') {

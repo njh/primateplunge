@@ -33,6 +33,7 @@ dist_graphics_DATA = \
 	jetpackPickup.bmp \
 	jumpPickup.bmp \
 	laser.bmp \
+	linuxThankYou.bmp \
 	loading.bmp \
 	locked.bmp \
 	log.bmp \
@@ -68,7 +69,7 @@ dist_graphics_DATA = \
 	swingRight.bmp \
 	taskBarIcon.bmp \
 	whale.bmp \
-	WindowsThankYou.bmp \
+	LinuxThankYou.bmp \
 	worldunlocked.bmp
 
 
