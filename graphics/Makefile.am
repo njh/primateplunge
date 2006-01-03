@@ -69,7 +69,6 @@ dist_graphics_DATA = \
 	swingRight.bmp \
 	taskBarIcon.bmp \
 	whale.bmp \
-	LinuxThankYou.bmp \
 	worldunlocked.bmp
 
 
