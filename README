@@ -1,6 +1,6 @@
 PRIMATE PLUNGE README
 http://www.aelius.com/primateplunge/
-
+email: primateplunge@aelius.com
 
 
 
@@ -55,17 +55,6 @@ have the time to implement a way of enlarging the window. As a quick
 fix, you can go into "Universal Access" in the System Preferences and
 turn on zoom.
 
-Q: Primate Plunge won't even launch! A: There have been problems
-relating to this. Some people have found that the game works after a
-couple of attempts, and for others it doesn't launch at all, either way
-without leaving any useful information on the console (debugging log).
-Please note that this is not a MacOS X 10.3 (Panther) problem as it has
-been tested on several machines running Panther which work correctly
-(although might be a combination of G5+Panther?). However, if you do
-have this problem, please email me (phish@aelius.com) and state what
-hardware/operating system/any 3rd party software you can think of you
-are running Primate Plunge with. Thank you!
-
 Q: Sometimes when I try to land on a platform, Monkey just goes straight
 through! A: Monkey will only attempt to grab onto a platform which you
 have not already passed - do not go below any platform you intend to
@@ -98,7 +87,7 @@ programming language Blitz3D (www.blitzbasic.com) for Windows. But of
 course I'd rather develop for the Mac any day :-)
 
 Primate Plunge was created by: Joseph Humfrey (all design, programming,
-graphics) phish@aelius.com http://www.aelius.com/ Jens Nilsson (sound,
+graphics) primateplunge@aelius.com http://www.aelius.com/ Jens Nilsson (sound,
 game music) public@fadeoutstudio.com http://www.fadeoutstudio.com/
 Shigeki Miyashita (title music - thanks to iDevGame's resources section)
 http://www6.shizuokanet.ne.jp/~miya/
